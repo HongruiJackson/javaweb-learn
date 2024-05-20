@@ -26,21 +26,38 @@
         from student
         where id = #{id};
     </select>
+
     <select id="selectByConditionUseParam" resultType="com.jackson.pojo.Student">
         select *
         from student
-        where
-            age = #{age}
-            and name like #{name}
+        <where>
+            <if test="age != null">
+                age = #{age}
+            </if>
+            <if test="name != null and name !='' ">
+                and name like #{name}
+            </if>
+        </where>
     </select>
 
 
     <select id="selectByConditionUseClass" resultType="com.jackson.pojo.Student">
         select *
         from student
-        where
-        age = #{age}
-        and name like #{name}
+        <where>
+            <choose>
+                <when test="name != null and name !='' ">
+                    name = #{name}
+                </when>
+                <when test="age != null">
+                    age = #{age}
+                </when>
+                <otherwise>
+                    1=1
+                </otherwise>
+            </choose>
+        </where>
+
     </select>
 
 
