@@ -15,7 +15,9 @@
         <result column="age" property="age"/>
         <result column="school" property="school"/>
     </resultMap>
-
+    <delete id="deleteById">
+        delete from student where id = #{id}
+    </delete>
 
 
     <select id="selectAll" resultType="Student">
@@ -74,5 +76,22 @@
         insert into student (age, name, school)
         values (#{age}, #{name}, #{school})
     </insert>
+
+    <update id="update">
+        update student
+        <set>
+            <if test="age != null">
+                age = #{age},
+            </if>
+            <if test="name != null and name !='' ">
+                name = #{name},
+            </if>
+            <if test="school != null and school !='' ">
+                school = #{school},
+            </if>
+        </set>
+        where
+            id = #{id}
+    </update>
 
 </mapper>

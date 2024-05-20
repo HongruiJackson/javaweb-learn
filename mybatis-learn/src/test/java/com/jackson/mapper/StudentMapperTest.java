@@ -77,4 +77,18 @@ public class StudentMapperTest {
         }
     }
 
+    @Test
+    public void testUpdate() {
+        SqlSessionFactory sqlSessionFactory = MyBatisUtil.getSqlSessionFactory();
+
+        try(SqlSession sqlSession = sqlSessionFactory.openSession(true)) {
+            StudentMapper studentMapper = sqlSession.getMapper(StudentMapper.class);
+            Student student = new Student();
+            student.setName("jackson");
+            student.setAge(22);
+            student.setId(2);
+            studentMapper.update(student);
+        }
+    }
+
 }
