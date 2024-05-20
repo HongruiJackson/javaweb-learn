@@ -17,6 +17,7 @@
     </resultMap>
 
 
+
     <select id="selectAll" resultType="Student">
         select *
         from student;
@@ -68,5 +69,10 @@
         age = #{age}
         and name like #{name}
     </select>
+
+    <insert id="add" useGeneratedKeys="true" keyProperty="id">
+        insert into student (age, name, school)
+        values (#{age}, #{name}, #{school})
+    </insert>
 
 </mapper>

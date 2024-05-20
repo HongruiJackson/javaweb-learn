@@ -19,4 +19,6 @@ public interface StudentMapper {
 
     List<Student> selectByConditionUseMap(Map map);
 
+    void add(Student student);
+
 }
