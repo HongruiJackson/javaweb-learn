@@ -25,4 +25,6 @@ public interface StudentMapper {
 
     void deleteById(int id);
 
+    void deleteByIds(@Param("ids") int[] ids);
+
 }
