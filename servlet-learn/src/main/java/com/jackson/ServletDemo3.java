@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 
 @WebServlet("/demo3")
 public class ServletDemo3 extends HttpServlet {
@@ -30,6 +31,11 @@ public class ServletDemo3 extends HttpServlet {
 
         //6. 获取请求头
         System.out.println(req.getHeader("User-Agent"));
+
+        //get中文乱码
+        String username = req.getParameter("username");
+        byte[] bytes = username.getBytes(StandardCharsets.ISO_8859_1);
+        String s = new String(bytes, StandardCharsets.UTF_8);
 
         super.doGet(req, resp);
     }
